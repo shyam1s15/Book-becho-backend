@@ -1,8 +1,6 @@
 package com.bookbecho.infrastructure.core.config;
 
 import com.bookbecho.users.api.UsersApiResource;
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.server.ServerProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.ext.Provider;
 
 @Configuration
-@ApplicationPath("/book_becho")
+//@ApplicationPath("/book_becho")
 public class JerseyConfig{
 
     private static final Logger LOG = LoggerFactory.getLogger(JerseyConfig.class);
@@ -36,13 +34,13 @@ public class JerseyConfig{
 //        appCtx.getBeansWithAnnotation(Provider.class).values().forEach(this::register);
 //    }
 
-    @Bean
-    public ResourceConfig resourceConfig() {
-        ResourceConfig config = new ResourceConfig();
-        appCtx.getBeansWithAnnotation(Path.class).values().forEach(component -> config.register(component.getClass()));
-        config.register(org.glassfish.jersey.media.multipart.MultiPartFeature.class);
-        config.property(ServerProperties.WADL_FEATURE_DISABLE, true);
-        return config;
-    }
+//    @Bean
+//    public ResourceConfig resourceConfig() {
+//        ResourceConfig config = new ResourceConfig();
+//        appCtx.getBeansWithAnnotation(Path.class).values().forEach(component -> config.register(component.getClass()));
+//        config.register(org.glassfish.jersey.media.multipart.MultiPartFeature.class);
+//        config.property(ServerProperties.WADL_FEATURE_DISABLE, true);
+//        return config;
+//    }
 
 }
