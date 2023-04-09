@@ -39,7 +39,7 @@ public class UsersApiResource {
 //    @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.TEXT_PLAIN })
     public String create() {
-        return "Hello fucker";
+        return "Hello";
     }
 
     @GET
