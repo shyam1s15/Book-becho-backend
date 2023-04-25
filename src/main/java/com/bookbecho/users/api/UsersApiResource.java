@@ -1,5 +1,7 @@
 package com.bookbecho.users.api;
 
+import com.bookbecho.infrastructure.core.serialization.DefaultToApiJsonSerializer;
+import com.bookbecho.users.data.AppUserData;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -8,14 +10,13 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 @Path("/users")
 @Component
@@ -24,7 +25,12 @@ import javax.ws.rs.core.MediaType;
 public class UsersApiResource {
 
     @Autowired
-    public UsersApiResource(){}
+    public UsersApiResource(final DefaultToApiJsonSerializer<AppUserData> toApiJsonSerializer){
+        this.toApiJsonSerializer = toApiJsonSerializer;
+    }
+
+    private final DefaultToApiJsonSerializer<AppUserData> toApiJsonSerializer;
+
 
     @GET
     @Path("/hello")
@@ -38,8 +44,12 @@ public class UsersApiResource {
             @ApiResponse(responseCode = "200", description = "OK") })
 //    @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.TEXT_PLAIN })
-    public String create() {
-        return "Hello";
+    public String create(@Parameter(hidden = true) final String apiRequestBodyAsJson) {
+
+//        return this.toApiJsonSerializer.serialize(result);
+
+        return apiRequestBodyAsJson;
+
     }
 
     @GET

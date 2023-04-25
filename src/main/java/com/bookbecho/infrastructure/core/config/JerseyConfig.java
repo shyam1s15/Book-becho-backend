@@ -1,6 +1,7 @@
 package com.bookbecho.infrastructure.core.config;
 
 import com.bookbecho.users.api.UsersApiResource;
+import jakarta.ws.rs.Path;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.slf4j.Logger;
@@ -10,13 +11,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PostConstruct;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.Path;
-import javax.ws.rs.ext.Provider;
 
 @Configuration
-@ApplicationPath("/book_becho")
 public class JerseyConfig{
 
     private static final Logger LOG = LoggerFactory.getLogger(JerseyConfig.class);
